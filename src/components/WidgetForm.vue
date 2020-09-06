@@ -37,7 +37,8 @@
                             :element="el"
                             :select.sync="selectWidget"
                             :index="i"
-                            :data="col">
+                            :data="col"
+                            @edittable="handleEditTable">
                           </widget-form-item>
                         </transition-group>
 
@@ -86,120 +87,124 @@ export default {
         event.stopPropagation()
       }
     }
+    this.handleEditTable(0)
   },
   methods: {
     handleMoveEnd ({newIndex, oldIndex}) {
-      console.log('index', newIndex, oldIndex)
+        console.log('index', newIndex, oldIndex)
     },
     handleSelectWidget (index) {
-      console.log(index, '#####')
-      this.selectWidget = this.data.list[index]
+        console.log(index, '#####')
+        this.selectWidget = this.data.list[index]
     },
     handleWidgetAdd (evt) {
-      console.log('add', evt)
-      console.log('end', evt)
-      const newIndex = evt.newIndex
-      const to = evt.to
-      console.log(to)
+        console.log('add', evt)
+        console.log('end', evt)
+        const newIndex = evt.newIndex
+        const to = evt.to
+        console.log(to)
 
-      //为拖拽到容器的元素添加唯一 key
-      const key = Date.parse(new Date()) + '_' + Math.ceil(Math.random() * 99999)
-      this.$set(this.data.list, newIndex, {
-        ...this.data.list[newIndex],
-        options: {
-          ...this.data.list[newIndex].options,
-          remoteFunc: 'func_' + key
-        },
-        key,
-        // 绑定键值
-        model: this.data.list[newIndex].type + '_' + key,
-        rules: []
-      })
-
-      if (this.data.list[newIndex].type === 'radio' || this.data.list[newIndex].type === 'checkbox' || this.data.list[newIndex].type === 'select') {
+        //为拖拽到容器的元素添加唯一 key
+        const key = Date.parse(new Date()) + '_' + Math.ceil(Math.random() * 99999)
         this.$set(this.data.list, newIndex, {
-          ...this.data.list[newIndex],
-          options: {
-            ...this.data.list[newIndex].options,
-            options: this.data.list[newIndex].options.options.map(item => ({
-              ...item
-            }))
-          }
+            ...this.data.list[newIndex],
+            options: {
+                ...this.data.list[newIndex].options,
+                remoteFunc: 'func_' + key
+            },
+            key,
+            // 绑定键值
+            model: this.data.list[newIndex].type + '_' + key,
+            rules: []
         })
-      }
 
-      if (this.data.list[newIndex].type === 'grid') {
-        this.$set(this.data.list, newIndex, {
-          ...this.data.list[newIndex],
-          columns: this.data.list[newIndex].columns.map(item => ({...item}))
-        })
-      }
+        if (this.data.list[newIndex].type === 'radio' || this.data.list[newIndex].type === 'checkbox' || this.data.list[newIndex].type === 'select') {
+            this.$set(this.data.list, newIndex, {
+                ...this.data.list[newIndex],
+                options: {
+                    ...this.data.list[newIndex].options,
+                    options: this.data.list[newIndex].options.options.map(item => ({
+                        ...item
+                    }))
+                }
+            })
+        }
 
-      this.selectWidget = this.data.list[newIndex]
+        if (this.data.list[newIndex].type === 'grid') {
+            this.$set(this.data.list, newIndex, {
+                ...this.data.list[newIndex],
+                columns: this.data.list[newIndex].columns.map(item => ({...item}))
+            })
+        }
+
+        this.selectWidget = this.data.list[newIndex]
     },
     handleWidgetColAdd ($event, row, colIndex) {
-      console.log('coladd', $event, row, colIndex)
-      const newIndex = $event.newIndex
-      const oldIndex = $event.oldIndex
-      const item = $event.item
+        console.log('coladd', $event, row, colIndex)
+        const newIndex = $event.newIndex
+        const oldIndex = $event.oldIndex
+        const item = $event.item
 
-      // 防止布局元素的嵌套拖拽
-      if (item.className.indexOf('data-grid') >= 0) {
+        // 防止布局元素的嵌套拖拽
+        if (item.className.indexOf('data-grid') >= 0) {
 
-        // 如果是列表中拖拽的元素需要还原到原来位置
-        item.tagName === 'DIV' && this.data.list.splice(oldIndex, 0, row.columns[colIndex].list[newIndex])
+            // 如果是列表中拖拽的元素需要还原到原来位置
+            item.tagName === 'DIV' && this.data.list.splice(oldIndex, 0, row.columns[colIndex].list[newIndex])
 
-        row.columns[colIndex].list.splice(newIndex, 1)
+            row.columns[colIndex].list.splice(newIndex, 1)
 
-        return false
-      }
+            return false
+        }
 
-      console.log('from', item)
+        console.log('from', item)
 
-      const key = Date.parse(new Date()) + '_' + Math.ceil(Math.random() * 99999)
+        const key = Date.parse(new Date()) + '_' + Math.ceil(Math.random() * 99999)
 
-      this.$set(row.columns[colIndex].list, newIndex, {
-        ...row.columns[colIndex].list[newIndex],
-        options: {
-          ...row.columns[colIndex].list[newIndex].options,
-          remoteFunc: 'func_' + key
-        },
-        key,
-        // 绑定键值
-        model: row.columns[colIndex].list[newIndex].type + '_' + key,
-        rules: []
-      })
-
-      if (row.columns[colIndex].list[newIndex].type === 'radio' || row.columns[colIndex].list[newIndex].type === 'checkbox' || row.columns[colIndex].list[newIndex].type === 'select') {
         this.$set(row.columns[colIndex].list, newIndex, {
-          ...row.columns[colIndex].list[newIndex],
-          options: {
-            ...row.columns[colIndex].list[newIndex].options,
-            options: row.columns[colIndex].list[newIndex].options.options.map(item => ({
-              ...item
-            }))
-          }
+            ...row.columns[colIndex].list[newIndex],
+            options: {
+                ...row.columns[colIndex].list[newIndex].options,
+                remoteFunc: 'func_' + key
+            },
+            key,
+            // 绑定键值
+            model: row.columns[colIndex].list[newIndex].type + '_' + key,
+            rules: []
         })
-      }
 
-      this.selectWidget = row.columns[colIndex].list[newIndex]
+        if (row.columns[colIndex].list[newIndex].type === 'radio' || row.columns[colIndex].list[newIndex].type === 'checkbox' || row.columns[colIndex].list[newIndex].type === 'select') {
+            this.$set(row.columns[colIndex].list, newIndex, {
+                ...row.columns[colIndex].list[newIndex],
+                options: {
+                    ...row.columns[colIndex].list[newIndex].options,
+                    options: row.columns[colIndex].list[newIndex].options.options.map(item => ({
+                        ...item
+                    }))
+                }
+            })
+        }
+
+        this.selectWidget = row.columns[colIndex].list[newIndex]
     },
     handleWidgetDelete (index) {
-      if (this.data.list.length - 1 === index) {
-        if (index === 0) {
-          this.selectWidget = {}
+        if (this.data.list.length - 1 === index) {
+            if (index === 0) {
+                this.selectWidget = {}
+            } else {
+                this.selectWidget = this.data.list[index - 1]
+            }
         } else {
-          this.selectWidget = this.data.list[index - 1]
+            this.selectWidget = this.data.list[index + 1]
         }
-      } else {
-        this.selectWidget = this.data.list[index + 1]
-      }
 
-      this.$nextTick(() => {
-        this.data.list.splice(index, 1)
-      })
+        this.$nextTick(() => {
+            this.data.list.splice(index, 1)
+        })
     },
-  },
+    handleEditTable(index) {
+        console.log('=-=-=-=-=-=-=-=');
+    }
+},
   watch: {
     select (val) {
       this.selectWidget = val

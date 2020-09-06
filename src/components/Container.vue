@@ -74,8 +74,7 @@
               <el-button v-if="generateCode" type="text" size="medium" icon="el-icon-document" @click="handleGenerateCode">{{$t('fm.actions.code')}}</el-button>
             </el-header>
             <el-main :class="{'widget-empty': widgetForm.list.length === 0}">
-
-              <widget-form v-if="!resetJson"  ref="widgetForm" :data="widgetForm" :select.sync="widgetFormSelect"></widget-form>
+              <widget-form v-if="!resetJson"  ref="widgetForm" :data="widgetForm" :select.sync="widgetFormSelect" @tableEdit="handleEditTable"></widget-form>
             </el-main>
           </el-container>
 
@@ -92,7 +91,7 @@
                 <header-config v-show="configTab ==='header'" :data="headerFormSelect"></header-config>
 <!--                <table-config v-show="configTab ==='table'" :data="tableSelect"></table-config>-->
                 <zhi-biao-config v-show="configTab ==='zhibiao'" :data="zhiBiaoSelect"></zhi-biao-config>
-                <widget-config v-show="configTab ==='widget'" :data="widgetFormSelect" @showAddColumn="addColumn"></widget-config>
+                <widget-config v-show="configTab ==='widget'" :data="widgetFormSelect" @showAddColumn="addColumn" @removeColumn="removeColumn"></widget-config>
                 <form-config v-show="configTab ==='form'" :data="widgetForm.config"></form-config>
               </el-main>
             </el-container>
@@ -172,6 +171,27 @@
               </el-tab-pane>
             </el-tabs>
           </cus-dialog>
+
+          <el-dialog ref="editTableDialog" title="表格编辑" :visible.sync="dialogEidtableTableVisible" append-to-body>
+            <el-table ref="editTable" :data="widgetForm.list">
+              <el-table-column property="date" label="日期" width="180">
+                <template slot-scope="{row}">
+                  <el-input v-model="row.date" placeholder="请输入" size="small" />
+                </template>
+              </el-table-column>
+              <el-table-column property="name" label="姓名" width="180">
+                <template slot-scope="{row}">
+                  <el-input v-model="row.name" placeholder="请输入" size="small" />
+                </template>
+              </el-table-column>
+              <el-table-column property="address" label="地址">
+                <template slot-scope="{row}">
+                  <el-input v-model="row.address" placeholder="请输入" size="small" />
+                </template>
+              </el-table-column>
+            </el-table>
+          </el-dialog>
+
         </el-container>
       </el-main>
     </el-container>
@@ -289,6 +309,7 @@ export default {
       jsonReportEg: reportJson,
       codeActiveName: 'vue',
       dataActiveName: 'template',
+      dialogEidtableTableVisible: false,
     }
   },
   methods: {
@@ -474,6 +495,12 @@ export default {
     },
     handleDataChange (field, value, data) {
       console.log(field, value, data)
+    },
+    removeColumn() {
+        console.log("this.$refs['widgetForm'] : ", this.$refs['widgetForm'].$refs);
+    },
+    handleEditTable(index) {
+        this.dialogEidtableTableVisible = true
     }
   },
   watch: {

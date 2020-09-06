@@ -533,6 +533,7 @@ export default {
     },
     handleOptionsRemoveColumn(index) {
       this.data.columns.splice(index, 1)
+      this.$emit('removeColumn')
     },
     handleAddOption() {
       if (this.data.options.showLabel) {
