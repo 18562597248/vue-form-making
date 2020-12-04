@@ -22,10 +22,6 @@ export default {
       type: String,
       default: ''
     },
-    sbData: {
-      type: String,
-      default: ''
-    },
     readonly: {
       type: Boolean,
       default: true
@@ -45,7 +41,7 @@ export default {
     Spreadsheet.locale('zh-cn', zhCN);
     this.spreadsheet = new Spreadsheet(this.$refs.xspreadsheet, {
       view: {
-        height: () => document.documentElement.clientHeight-220,
+        height: () => document.documentElement.clientHeight-230,
         width: () => document.documentElement.clientWidth-730
       },
       row: {
@@ -75,7 +71,16 @@ export default {
         console.log(this.showgrid)
 
         // save data to db
-      });
+      })
+      .on('cell-selected', (cell, ri, ci) => {
+        if(cell && cell.type === 'sb'){
+          // this.dialogFormVisible = true
+          // this.spreadsheet.cellText(ri,ci,"设备").reRender()
+          this.$emit('updateInfo', this.spreadsheet,ri,ci)// select事件触发后，自动触发updateInfo事件
+          // this.sbComponetwin = true
+        }
+      })
+    ;
   },
   methods: {
     getSpreadSheetData() {
