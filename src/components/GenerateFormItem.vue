@@ -319,7 +319,8 @@
           <table-column v-if="column.children && column.children.length" :key="column.id" :prop="column.prop" :label="column.label" :width="column.width" :coloumn-header="column" :show-edit="!disabled" :readonly="readonly" />
           <el-table-column v-else :key="column.id" :prop="column.prop" :label="column.label" :width="column.width">
             <template slot-scope="{row, $index}">
-              <el-input v-if="!disabled" v-model="row[column.prop]" :readonly="readonly" placeholder="请输入" size="small" />
+              <el-input v-if="!disabled && isDefaultOrOtherUi(row, column) === 'default'" v-model="row[column.prop]" :readonly="readonly" placeholder="请输入" size="small" />
+              <jizu-component v-if="isDefaultOrOtherUi(row, column) === 'jz'" v-model="row[column.prop]" />
             </template>
           </el-table-column>
         </template>
@@ -348,7 +349,7 @@ import TableColumn from '@/components/TableColumn';
 import sbComponet from '@/components/sbComponent';
 
 export default {
-  props: ['widget', 'models', 'rules', 'remote', 'disabled', 'readonly','zbbmDatas','cellPro','jizuData','showGrid',"werks","bukrs",'width_','height_'],
+  props: ['widget', 'models', 'rules', 'remote', 'disabled', 'readonly', 'zbbmDatas', 'cellPro', 'jizuData', 'showGrid', 'werks', 'bukrs', 'width_', 'height_', 'uiSelect'],
   components: {
     SpreadSheet,
     FmUpload,
@@ -362,6 +363,7 @@ export default {
     return {
       dataModel: this.models[this.widget.model],
       showTableOnly: false,
+      uiselect: this.uiSelect,
       dialogFormVisisbjzm: false,
       sheet:null,
       ci:0,
@@ -395,6 +397,21 @@ export default {
     }
   },
   methods: {
+    isDefaultOrOtherUi(row, column) {
+      // console.log('row : ', row);
+      // console.log('column : ', column);
+      // console.log('uiselect : ', this.uiselect);
+      if (this.uiselect.jz && this.uiselect.jz.length > 0) {
+        for (let i in this.uiselect.jz) {
+          if (this.uiselect.jz[i].rowIndex === row.rowIndex && this.uiselect.jz[i].prop === column.prop) {
+            return 'jz'
+          }
+        }
+      } else if (this.uiselect.sb && this.uiselect.sb.length > 0) {
+
+      }
+      return 'default'
+    },
     cellSelectsb(sheet,ri,ci){
       this.dialogFormVisisbjzm =true
       this.sheet=sheet
@@ -517,6 +534,9 @@ export default {
       handler(val) {
         this.dataModel = val[this.widget.model]
       }
+    },
+    uiSelect(val) {
+      this.uiselect = val
     },
   }
 }

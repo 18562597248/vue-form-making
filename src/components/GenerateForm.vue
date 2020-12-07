@@ -30,6 +30,7 @@
                   :widget="citem"
                   :disabled="disabled"
                   :readonly="readonly"
+                  :ui-select="uiselect"
                   @input-change="onInputChange">
                 </generate-form-item>
               </template>
@@ -61,6 +62,7 @@
             :bukrs="bukrs"
             :width_="width_"
             :height_="height_"
+            :ui-select="uiselect"
             @input-change="onInputChange"
           >
           </generate-form-item>
@@ -80,9 +82,10 @@ export default {
     GenerateFormItem
   },
   props: ['data', 'remote', 'value', 'insite', 'formLoading', 'disabled', 'readonly', 'module',
-    'zbDatas','cellPro','jizuData','showGrid','werks','bukrs','width_','height_'],
+    'zbDatas','cellPro','jizuData','showGrid','werks','bukrs','width_','height_', 'uiSelect'],
   data () {
     return {
+      uiselect: this.uiSelect,
       models: {},
       rules: {},
       module_: this.module || 'jsjd'
@@ -259,6 +262,9 @@ export default {
     },
     jizuData(val){
       this.jizuData=val
+    },
+    uiSelect (val) {
+      this.uiselect = val
     },
     data: {
       deep: true,
