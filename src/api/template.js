@@ -2,7 +2,7 @@ import request from '@/util/request'
 
 export function getTemplate(dbid) {
   return request({
-    url: '/tpridmp/process/dmp_report?method=query',
+    url: '/jtgs/tpridmp/process/dmp_report?method=query',
     method: 'get',
     params: {
       dbid,
@@ -11,7 +11,7 @@ export function getTemplate(dbid) {
 }
 
 export function postTemplate(dbid, werks, bukrs, name, code, data, tempjb, flid, tables) {
-  return request.post('/tpridmp/process/dmp_report?method=save', {
+  return request.post('/jtgs/tpridmp/process/dmp_report?method=save', {
     dbid,
     werks,
     bukrs,
@@ -27,7 +27,7 @@ export function postTemplate(dbid, werks, bukrs, name, code, data, tempjb, flid,
 
 export function deleteTemplate(dbid) {
   return request({
-    url: '/tpridmp/process/dmp_report?method=delete',
+    url: '/jtgs/tpridmp/process/dmp_report?method=delete',
     method: 'get',
     params: {
       dbid
@@ -36,7 +36,7 @@ export function deleteTemplate(dbid) {
 }
 
 export function publishTemplate(dbid, published_dw, json, version) {
-  return request.post('/tpridmp/process/dmp_report?method=publish',{
+  return request.post('/jtgs/tpridmp/process/dmp_report?method=publish',{
     dbid,
     published_dw,
     json: JSON.stringify(json),
@@ -46,7 +46,7 @@ export function publishTemplate(dbid, published_dw, json, version) {
 
 export function enableTemplate(dbid) {
   return request({
-    url: '/tpridmp/process/dmp_report?method=enable',
+    url: '/jtgs/tpridmp/process/dmp_report?method=enable',
     method: 'get',
     params: {
       dbid

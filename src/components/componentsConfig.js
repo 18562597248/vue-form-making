@@ -11,8 +11,8 @@ export const basicComponents = [
       pattern: '',
       placeholder: '',
       disabled: false,
-      datasource: 'TPRI_VUE',
-      table: 'TPRI_DMP_REPORT_DATA_TEST',
+      datasource: 'AQSC_SJGL',
+      table: 'SJGL_JSJD_JBGL_REPORT_DATA',
       field: 'value'
     }
   },
@@ -27,8 +27,8 @@ export const basicComponents = [
       disabled: false,
       pattern: '',
       placeholder: '',
-      datasource: 'TPRI_VUE',
-      table: 'TPRI_DMP_REPORT_DATA_TEST',
+      datasource: 'AQSC_SJGL',
+      table: 'SJGL_JSJD_JBGL_REPORT_DATA',
       field: 'value'
     }
   },
@@ -45,8 +45,8 @@ export const basicComponents = [
       step: 1,
       disabled: false,
       controlsPosition: '',
-      datasource: 'TPRI_VUE',
-      table: 'TPRI_DMP_REPORT_DATA_TEST',
+      datasource: 'AQSC_SJGL',
+      table: 'SJGL_JSJD_JBGL_REPORT_DATA',
       field: 'value'
     }
   },
@@ -81,8 +81,8 @@ export const basicComponents = [
       },
       remoteFunc: '',
       disabled: false,
-      datasource: 'TPRI_VUE',
-      table: 'TPRI_DMP_REPORT_DATA_TEST',
+      datasource: 'AQSC_SJGL',
+      table: 'SJGL_JSJD_JBGL_REPORT_DATA',
       field: 'value'
     }
   },
@@ -114,8 +114,8 @@ export const basicComponents = [
       },
       remoteFunc: '',
       disabled: false,
-      datasource: 'TPRI_VUE',
-      table: 'TPRI_DMP_REPORT_DATA_TEST',
+      datasource: 'AQSC_SJGL',
+      table: 'SJGL_JSJD_JBGL_REPORT_DATA',
       field: 'value'
     }
   },
@@ -136,8 +136,8 @@ export const basicComponents = [
       format: 'HH:mm:ss',
       required: false,
       width: '',
-      datasource: 'TPRI_VUE',
-      table: 'TPRI_DMP_REPORT_DATA_TEST',
+      datasource: 'AQSC_SJGL',
+      table: 'SJGL_JSJD_JBGL_REPORT_DATA',
       field: 'value'
     }
   },
@@ -158,8 +158,8 @@ export const basicComponents = [
       timestamp: false,
       required: false,
       width: '',
-      datasource: 'TPRI_VUE',
-      table: 'TPRI_DMP_REPORT_DATA_TEST',
+      datasource: 'AQSC_SJGL',
+      table: 'SJGL_JSJD_JBGL_REPORT_DATA',
       field: 'value'
     }
   },
@@ -180,8 +180,8 @@ export const basicComponents = [
       timestamp: false,
       required: false,
       width: '',
-      datasource: 'TPRI_VUE',
-      table: 'TPRI_DMP_REPORT_DATA_TEST',
+      datasource: 'AQSC_SJGL',
+      table: 'SJGL_JSJD_JBGL_REPORT_DATA',
       field: 'value'
     }
   },
@@ -193,8 +193,8 @@ export const basicComponents = [
       readonly: false,
       disabled: false,
       width: '',
-      datasource: 'TPRI_VUE',
-      table: 'TPRI_DMP_REPORT_DATA_TEST',
+      datasource: 'AQSC_SJGL',
+      table: 'SJGL_JSJD_JBGL_REPORT_DATA',
       field: 'value'
     }
   },
@@ -215,8 +215,8 @@ export const basicComponents = [
       timestamp: false,
       required: false,
       width: '',
-      datasource: 'TPRI_VUE',
-      table: 'TPRI_DMP_REPORT_DATA_TEST',
+      datasource: 'AQSC_SJGL',
+      table: 'SJGL_JSJD_JBGL_REPORT_DATA',
       field: 'value'
     }
   },
@@ -229,8 +229,8 @@ export const basicComponents = [
       disabled: false,
       allowHalf: false,
       required: false,
-      datasource: 'TPRI_VUE',
-      table: 'TPRI_DMP_REPORT_DATA_TEST',
+      datasource: 'AQSC_SJGL',
+      table: 'SJGL_JSJD_JBGL_REPORT_DATA',
       field: 'value'
     }
   },
@@ -242,8 +242,8 @@ export const basicComponents = [
       disabled: false,
       showAlpha: false,
       required: false,
-      datasource: 'TPRI_VUE',
-      table: 'TPRI_DMP_REPORT_DATA_TEST',
+      datasource: 'AQSC_SJGL',
+      table: 'SJGL_JSJD_JBGL_REPORT_DATA',
       field: 'value'
     }
   },
@@ -277,8 +277,8 @@ export const basicComponents = [
         label: 'label'
       },
       remoteFunc: '',
-      datasource: 'TPRI_VUE',
-      table: 'TPRI_DMP_REPORT_DATA_TEST',
+      datasource: 'AQSC_SJGL',
+      table: 'SJGL_JSJD_JBGL_REPORT_DATA',
       field: 'value'
     }
   },
@@ -289,8 +289,8 @@ export const basicComponents = [
       defaultValue: false,
       required: false,
       disabled: false,
-      datasource: 'TPRI_VUE',
-      table: 'TPRI_DMP_REPORT_DATA_TEST',
+      datasource: 'AQSC_SJGL',
+      table: 'SJGL_JSJD_JBGL_REPORT_DATA',
       field: 'value'
     }
   },
@@ -307,8 +307,8 @@ export const basicComponents = [
       showInput: false,
       range: false,
       width: '',
-      datasource: 'TPRI_VUE',
-      table: 'TPRI_DMP_REPORT_DATA_TEST',
+      datasource: 'AQSC_SJGL',
+      table: 'SJGL_JSJD_JBGL_REPORT_DATA',
       field: 'value'
     }
   },
@@ -320,8 +320,8 @@ export const basicComponents = [
       readonly: false,
       disabled: false,
       customClass: '',
-      datasource: 'TPRI_VUE',
-      table: 'TPRI_DMP_REPORT_DATA_TEST',
+      datasource: 'AQSC_SJGL',
+      table: 'SJGL_JSJD_JBGL_REPORT_DATA',
       field: 'value'
     }
   },
@@ -332,8 +332,8 @@ export const basicComponents = [
       readonly: false,
       disabled: false,
       width: '',
-      datasource: 'TPRI_VUE',
-      table: 'TPRI_DMP_REPORT_DATA_TEST',
+      datasource: 'AQSC_SJGL',
+      table: 'SJGL_JSJD_JBGL_REPORT_DATA',
       field: 'value'
     }
   },
@@ -344,8 +344,8 @@ export const basicComponents = [
       readonly: false,
       disabled: false,
       width: '',
-      datasource: 'TPRI_VUE',
-      table: 'TPRI_DMP_REPORT_DATA_TEST',
+      datasource: 'AQSC_SJGL',
+      table: 'SJGL_JSJD_JBGL_REPORT_DATA',
       field: 'value'
     }
   },
@@ -358,8 +358,8 @@ export const basicComponents = [
       readonly: false,
       disabled: false,
       width: '',
-      datasource: 'TPRI_VUE',
-      table: 'TPRI_DMP_REPORT_DATA_TEST',
+      datasource: 'AQSC_SJGL',
+      table: 'SJGL_JSJD_JBGL_REPORT_DATA',
       field: 'value'
     }
   },
@@ -394,8 +394,8 @@ export const advanceComponents = [
       min: 0,
       isEdit: false,
       action: 'https://jsonplaceholder.typicode.com/photos/',
-      datasource: 'TPRI_VUE',
-      table: 'TPRI_DMP_REPORT_DATA_TEST',
+      datasource: 'AQSC_SJGL',
+      table: 'SJGL_JSJD_JBGL_REPORT_DATA',
       field: 'value'
     }
   },
@@ -405,8 +405,8 @@ export const advanceComponents = [
     options: {
       defaultValue: '',
       width: '',
-      datasource: 'TPRI_VUE',
-      table: 'TPRI_DMP_REPORT_DATA_TEST',
+      datasource: 'AQSC_SJGL',
+      table: 'SJGL_JSJD_JBGL_REPORT_DATA',
       field: 'value'
     }
   },
@@ -427,8 +427,8 @@ export const advanceComponents = [
         children: 'children'
       },
       remoteFunc: '',
-      datasource: 'TPRI_VUE',
-      table: 'TPRI_DMP_REPORT_DATA_TEST',
+      datasource: 'AQSC_SJGL',
+      table: 'SJGL_JSJD_JBGL_REPORT_DATA',
       field: 'value'
     }
   }
@@ -461,8 +461,8 @@ export const layoutComponents = [
     rows: [],
     mergeRule: [{ startRow: '', startColumn: '', endRow: '', endColumn: '' }],
     options: {
-      datasource: 'TPRI_VUE',
-      table: 'TPRI_DMP_REPORT_DATA_TEST',
+      datasource: 'AQSC_SJGL',
+      table: 'SJGL_JSJD_JBGL_REPORT_DATA',
       dataTransformRules: {
         rows:{
           "wd_jz": "jzid",
@@ -486,8 +486,8 @@ export const layoutComponents = [
     type: 'sheet',
     icon: 'icon-sheet',
     options: {
-      datasource: 'TPRI_VUE',
-      table: 'TPRI_DMP_REPORT_DATA_TEST',
+      datasource: 'AQSC_SJGL',
+      table: 'SJGL_JSJD_JBGL_REPORT_DATA',
       field: 'value'
     }
   }

@@ -346,7 +346,7 @@
     },
     mounted() {
       this.cloneDeep = require('lodash').cloneDeep
-      this.cellPro = {datasource: 'TPRI_VUE', table: 'TPRI_DMP_REPORT_DATA_TEST', field: 'VALUE'}
+      this.cellPro = {datasource: 'AQSC_SJGL', table: 'SJGL_JSJD_JBGL_REPORT_DATA', field: 'VALUE'}
       this.query_bbfl();
     },
     methods: {
@@ -437,7 +437,7 @@
         if (isCheck) {
           this.selectTreeNode = obj
           console.log(JSON.stringify(this.widgetForm))
-          this.cellPro = {datasource: 'TPRI_VUE', table: 'TPRI_DMP_REPORT_DATA_TEST', field: 'VALUE'}
+          this.cellPro = {datasource: 'AQSC_SJGL', table: 'SJGL_JSJD_JBGL_REPORT_DATA', field: 'VALUE'}
           const {dbid, is_temp} = this.selectTreeNode
           is_temp === '1' && this.queryTemplateData(dbid)
           is_temp === '0' && this.handleClear()
@@ -785,12 +785,6 @@
                           rowsColumns["zbbm"] = rightsmenus[m].zbbm
                           rowsColumns["field"] = rightsmenus[m].field
                         }
-                        // if(!rightsmenus[m].headers){
-                        //   rowsColumns["datasource"] = "TPRI_VUE"
-                        //   rowsColumns["table"] = "TPRI_DMP_REPORT_DATA_TEST"
-                        //   rowsColumns["zbbm"] = "12"
-                        //   rowsColumns["field"] = "value"
-                        // }
                         datas_.push(rowsColumns)
                       }
                     }
@@ -1083,6 +1077,7 @@
           }
         })
       },
+
       addColumn() {
         this.showAddColumn = true
       },
