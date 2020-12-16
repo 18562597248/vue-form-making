@@ -54,7 +54,7 @@ export default {
   },
   methods: {
     queryData() {
-      getMethod('/sjgl/process/sjgl_zsj_sbglcx?cx=bmbztree', { werks: this.werks }).then(res => {
+      getMethod('/jtgs/sjgl/process/sjgl_zsj_sbglcx?cx=bmbztree', { werks: this.werks }).then(res => {
         const data = res.dataset.datas;
         this.bmbzTreePrepareSl(data);
         this.sbflTreeHide(data);

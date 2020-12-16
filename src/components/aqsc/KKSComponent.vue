@@ -399,7 +399,7 @@ export default {
     },
     getList() {
       const param = { werks: this.werks, skks: '_null', kksbm: this.werks }
-      getMethod('/sjgl/process/aqsc_sjgl_zsj_kks?m=query_tree', param).then(res => {
+      getMethod('/jtgs/sjgl/process/aqsc_sjgl_zsj_kks?m=query_tree', param).then(res => {
         this.datatree = res.dataset.datas;
         // const ss = []
         // res.dataset.datas.forEach(item => {
@@ -416,7 +416,7 @@ export default {
         return
       }
       const param = { skks: dbid, werks: this.werks }
-      await getMethod('/sjgl/process/aqsc_sjgl_zsj_kks?m=query_tree', param).then(res => {
+      await getMethod('/jtgs/sjgl/process/aqsc_sjgl_zsj_kks?m=query_tree', param).then(res => {
         resolve(res.dataset.datas)
       })
     },
@@ -640,7 +640,7 @@ export default {
     },
     getRoot() {
       const param = { werks: this.werks, skks: '_null', kksbm: this.werks }
-      getMethod('/sjgl/process/sjgl_zsj_com_kks?m=queryRoot', param).then(res => {
+      getMethod('/jtgs/sjgl/process/sjgl_zsj_com_kks?m=queryRoot', param).then(res => {
         this.data = res.dataset.datas
       })
     },

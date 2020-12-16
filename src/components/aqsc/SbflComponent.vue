@@ -237,7 +237,7 @@ export default {
       this.data = [];
       const param = { werks: this.werks }
       const paramm = Object.assign({}, param);
-      getMethod('/sjgl/process/sjgl_zsj_sbfl?m=querytree', paramm).then(res => {
+      getMethod('/jtgs/sjgl/process/sjgl_zsj_sbfl?m=querytree', paramm).then(res => {
         this.data = res.dataset.datas
         this.listLoading = false;
       })

@@ -148,7 +148,7 @@ export default {
         });
         return;
       }
-      postMethod('/sjgl/process/sjgl_zsj_jtsjxt_sbgl_lssbwh_jscs?m=getPlsj', {
+      postMethod('/jtgs/sjgl/process/sjgl_zsj_jtsjxt_sbgl_lssbwh_jscs?m=getPlsj', {
         werks: this.werks,
         tableName: this.tableName,
         tableName2: this.tableName2,

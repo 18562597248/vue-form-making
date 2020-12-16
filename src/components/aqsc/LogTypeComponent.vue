@@ -105,7 +105,7 @@ export default {
       }
     },
     queryData(param) {
-      const url = '/sjgl/process/sjgl_zsj_logtype?method=query_logtype'
+      const url = '/jtgs/sjgl/process/sjgl_zsj_logtype?method=query_logtype'
       const p = { werks: this.werks, bukrs: this.bukrs, is_enable: 0 };
       const paramn = Object.assign(p, param);
       getMethod(url, paramn).then(response => {
@@ -119,7 +119,7 @@ export default {
         });
     },
     reLoad(param) {
-      const url = '/sjgl/process/sjgl_zsj_logtype?method=query_logtype'
+      const url = '/jtgs/sjgl/process/sjgl_zsj_logtype?method=query_logtype'
       getMethod(url, param).then(response => {
         this.options = response.dataset.datas;
       })

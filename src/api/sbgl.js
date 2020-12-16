@@ -6,7 +6,7 @@ export function compareDateTime(date_start, date_end) {
   return d1 > d2
 }
 export function getUrl(url) {
-  return '/sjgl/process/sjgl_zsj_' + url;
+  return '/jtgs/sjgl/process/sjgl_zsj_' + url;
 }
 export function isNull(data) {
   return data === undefined || data === '' || data === null;
@@ -27,7 +27,7 @@ export function exportExcel(tableData, url, moduletype, moduleintype, fileName, 
   param.moduletype = moduletype;
   param.moduleintype = moduleintype;
   param.filename = fileName;
-  const exportExcelUrl = '/sjgl/process/' + url;
+  const exportExcelUrl = '/jtgs/sjgl/process/' + url;
   return downMethod(exportExcelUrl, param).then(res => {
     // console.log(res);
     const link = document.createElement('a');

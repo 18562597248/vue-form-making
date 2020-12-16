@@ -214,7 +214,7 @@ export default {
     getDetail(row) {
       const sbflid = row.sbflid;
       const bzsbid = row.dbid
-      getMethod('/sjgl/process/sjgl_zsj_bzsbcomp?m=query', { sbflid: sbflid, bzsbid: bzsbid }).then(response => {
+      getMethod('/jtgs/sjgl/process/sjgl_zsj_bzsbcomp?m=query', { sbflid: sbflid, bzsbid: bzsbid }).then(response => {
         const dtl = response.dataset;
         const dtldata = {}
         for (let i = 0; i < dtl.length; i++) {
@@ -250,7 +250,7 @@ export default {
       query.start = (this.currentPage - 1) * this.pageSize
       query.limit = this.pageSize
       query.moren = '1';
-      const queryUrl = '/sjgl/process/sjgl_zsj_bzsb?m=queryBzsbTable'
+      const queryUrl = '/jtgs/sjgl/process/sjgl_zsj_bzsb?m=queryBzsbTable'
       getMethod(queryUrl, query).then(res => {
         this.data = res.dataset.datas;
         this.totalCount = Number(res.dataset.totalCount)

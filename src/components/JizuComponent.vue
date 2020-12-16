@@ -133,7 +133,7 @@ export default {
     queryData(param) {
       const p = { is_del: 0, werks: this.werks, bukrs: this.bukrs };
       Object.assign(p, param);
-      getMethod('/sjgl/process/aqsc_zsj_jizupz?m=query', p).then(response => {
+      getMethod('/jtgs/sjgl/process/aqsc_zsj_jizupz?m=query', p).then(response => {
         this.options = response.dataset.datas;
       })
         .catch(() => {
@@ -144,7 +144,7 @@ export default {
         });
     },
     reLoad(param) {
-      getMethod('/sjgl/process/aqsc_zsj_jizupz?m=query', param).then(response => {
+      getMethod('/jtgs/sjgl/process/aqsc_zsj_jizupz?m=query', param).then(response => {
         this.options = response.dataset.datas;
       })
         .catch(() => {

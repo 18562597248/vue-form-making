@@ -150,7 +150,7 @@ export default {
       if (this.queryByDy) {
         m = 'query_by_dy'
       }
-      getMethod('/sjgl/process/aqsc_zsj_jizupz?m=' + m, p).then(response => {
+      getMethod('/jtgs/sjgl/process/aqsc_zsj_jizupz?m=' + m, p).then(response => {
         this.options = response.dataset.datas;
       })
         .catch(() => {
@@ -165,7 +165,7 @@ export default {
       if (this.queryByDy) {
         m = 'query_by_dy'
       }
-      getMethod('/sjgl/process/aqsc_zsj_jizupz?m=' + m, param).then(response => {
+      getMethod('/jtgs/sjgl/process/aqsc_zsj_jizupz?m=' + m, param).then(response => {
         this.options = response.dataset.datas;
       })
         .catch(() => {

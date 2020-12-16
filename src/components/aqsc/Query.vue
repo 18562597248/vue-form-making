@@ -122,7 +122,7 @@ export default {
       } else {
         query.zy = ''
       }
-      const queryUrl = '/sjgl/process/sjgl_zsj_sbfl?m=query_sbflq';
+      const queryUrl = '/jtgs/sjgl/process/sjgl_zsj_sbfl?m=query_sbflq';
       getMethod(queryUrl, query).then(res => {
         this.data = res.dataset.datas;
         this.listLoading = false;

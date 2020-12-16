@@ -63,7 +63,7 @@ export default {
         return
       }
       const param = { skks: dbid, werks: this.werks };
-      getMethod('/sjgl/process/sjgl_zsj_com_kks?m=queryRoot', param).then(res => {
+      getMethod('/jtgs/sjgl/process/sjgl_zsj_com_kks?m=queryRoot', param).then(res => {
         resolve(res.dataset.datas)
       })
     },
@@ -72,7 +72,7 @@ export default {
     },
     getRoot() {
       const param = { werks: this.werks, skks: '_null', kksbm: this.werks };
-      getMethod('/sjgl/process/sjgl_zsj_com_kks?m=queryRoot', param).then(res => {
+      getMethod('/jtgs/sjgl/process/sjgl_zsj_com_kks?m=queryRoot', param).then(res => {
         this.kksData = res.dataset.datas
       })
     }

@@ -309,7 +309,7 @@ export default {
       query.isReplace = "true"
       query.start = (this.currentPage - 1) * this.pageSize;
       query.limit = this.pageSize;
-      getMethod('/sjgl/process/staff_component?m=query_Staff', query).then(res => {
+      getMethod('/jtgs/sjgl/process/staff_component?m=query_Staff', query).then(res => {
         const ss = res.dataset.datas
         for (let i = 0; i < ss.length; i++) {
           if (ss[i].staffcode !== undefined) {

@@ -130,7 +130,7 @@ export default {
       }
     },
     queryData(param) {
-      const url = '/sjgl/process/sjgl_zsj_zypz?m=query'
+      const url = '/jtgs/sjgl/process/sjgl_zsj_zypz?m=query'
       const p = { isReplace: "true", is_del: 0, werks: this.werks, bukrs: this.bukrs, zybs: this.zybs, bmid: this.bmid };
       const paramn = Object.assign(p, param);
       getMethod(url, paramn).then(response => {
@@ -144,7 +144,7 @@ export default {
         });
     },
     reLoad(param) {
-      const url = '/sjgl/process/sjgl_zsj_zypz?m=query'
+      const url = '/jtgs/sjgl/process/sjgl_zsj_zypz?m=query'
       getMethod(url, param).then(response => {
         this.options = response.dataset.datas;
       })

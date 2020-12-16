@@ -129,7 +129,7 @@ export default {
     queryData(param) {
       const p = { isReplace: "true", is_del: 0, werks: this.werks, bukrs: this.bukrs };
       Object.assign(p, param);
-      getMethod('/sjgl/process/sjgl_zsj_bmpz?m=query', p).then(response => {
+      getMethod('/jtgs/sjgl/process/sjgl_zsj_bmpz?m=query', p).then(response => {
         this.options = response.dataset.datas;
       })
         .catch(() => {

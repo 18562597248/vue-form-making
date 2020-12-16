@@ -48,7 +48,7 @@ export default {
     // 初始化技术监督树
     queryJsjdTree() {
       const param = {};
-      const jsjdUrl = "/sjgl/process/sjgl_zsj_dcsbfl?m=query_zy";
+      const jsjdUrl = "/jtgs/sjgl/process/sjgl_zsj_dcsbfl?m=query_zy";
       getMethod(jsjdUrl, param).then(res => {
         this.jsjdTreeData = res.dataset.datas;
         // console.log(this.jsjdTreeData);
@@ -60,7 +60,7 @@ export default {
       // console.log(resolve);
       const dbid = node.data.dbid;
       const type = node.data.type;
-      let url = '/sjgl/process/sjgl_zsj_dcsbfl?m=';
+      let url = '/jtgs/sjgl/process/sjgl_zsj_dcsbfl?m=';
       if (type === "jdzy") {
         url += 'querysbfl';
         const param = { parentid: dbid, werks: this.werks };

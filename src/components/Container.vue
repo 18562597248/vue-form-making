@@ -386,7 +386,7 @@
         console.log(this.widgetForm.werks)
         const p = { is_del: 0, werks: this.widgetForm.werks === "undefined"?"_null":this.widgetForm.werks, bukrs: this.widgetForm.bukrs === "undefined"?"_null":this.widgetForm.bukrs };
         Object.assign(p, param);
-        getMethod('/sjgl/process/aqsc_zsj_jizupz?m=query', p).then(response => {
+        getMethod('/jtgs/sjgl/process/aqsc_zsj_jizupz?m=query', p).then(response => {
          let options = response.dataset.datas;
 
          let ss=[];

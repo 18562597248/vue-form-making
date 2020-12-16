@@ -59,7 +59,7 @@ export default {
       this.$emit('row-click', row)
     },
     queryData() {
-      getMethod('/sjgl/process/sjgl_zsj_sbglcx?cx=sbfltree', { werks: this.werks }).then(res => {
+      getMethod('/jtgs/sjgl/process/sjgl_zsj_sbglcx?cx=sbfltree', { werks: this.werks }).then(res => {
         const data = res.dataset.datas;
         this.sbflTreePrepareSl(data);
         this.sbflTreeHide(data);

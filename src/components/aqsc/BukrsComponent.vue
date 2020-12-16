@@ -92,7 +92,7 @@ export default {
     },
     queryData() {
       const param = { is_del: 0, bulx: this.bulx };
-      getMethod("/sjgl/process/sjgl_zsj_bukrs?m=comQuery", param).then(response => {
+      getMethod("/jtgs/sjgl/process/sjgl_zsj_bukrs?m=comQuery", param).then(response => {
         const datas = response.dataset.datas
         if (this.isShowWerkss) {
           this.options = response.dataset.datas;
