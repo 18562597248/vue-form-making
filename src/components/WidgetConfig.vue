@@ -582,7 +582,9 @@
     },
     mounted() {
       queryDataBookGroupCode(this.module).then(res => {
-        this.groupCodeOptions = res.dataset.datas;
+        if (res.success) {
+          this.groupCodeOptions = res.dataset.datas;
+        }
       })
     },
     methods: {

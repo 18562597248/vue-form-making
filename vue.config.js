@@ -16,15 +16,15 @@ module.exports = {
         target: 'https://aqsc.tpridmp.com:8000/',
         changeOrigin: true,
         pathRewrite: {
-          '/jsjd/': '/prod-api/jsjd/'
+          '/jtgs/jsjd/': '/prod-api/jsjd/'
         }
       },
       '/dev-api/': {
         target: 'http://127.0.0.1:8099',
         changeOrigin: true,
         pathRewrite: {
-          '/tpridmp/': '/',
-          '/sjgl/': '/'
+          '/jtgs/tpridmp/': '/',
+          '/jtgs/sjgl/': '/'
         }
       },
     }

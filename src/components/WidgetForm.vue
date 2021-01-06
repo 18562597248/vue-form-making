@@ -75,7 +75,7 @@
       Draggable,
       WidgetFormItem
     },
-    props: ['data', 'select', 'cellDom', 'areaDom', 'uiSelect','zbDatas','cellPro','jizuData','werks','bukrs'],
+    props: ['data', 'select', 'cellDom', 'areaDom', 'uiSelect', 'zbDatas', 'cellPro', 'jizuData', 'werks', 'bukrs'],
     data () {
       return {
         selectWidget: this.select,

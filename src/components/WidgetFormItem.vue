@@ -355,8 +355,9 @@
   import { addClass, removeClass } from 'element-ui/src/utils/dom';
   import SpreadSheet from '@/components/SpreadSheet';
   import sbComponet from '@/components/sbComponent';
+  import { getMethod } from "@/util/method";
   export default {
-    props: ['element', 'select', 'index', 'data', 'changeshowtt', 'celldom', 'areadom', 'uiSelect','zbbmDatas','cellPro','jizuData','werks','bukrs'],
+    props: ['element', 'select', 'index', 'data', 'changeshowtt', 'celldom', 'areadom', 'uiSelect', 'zbbmDatas', 'cellPro', 'jizuData', 'werks', 'bukrs'],
     components: {
       SpreadSheet,
       JizuComponent,
@@ -380,7 +381,9 @@
         dialogFormVisisbjzm: false,
         sheet:null,
         ci:0,
-        ri:0
+        ri:0,
+        userinfo: null,
+        prefix: '/jtgs'
       }
     },
     mounted() {
@@ -395,27 +398,31 @@
           this.isShift = false
         }
       })
+      this.userinfo = JSON.parse(sessionStorage.getItem("userinfo"));
+      if (this.element.type === 'sheet') {
+        this.query_sb()
+      }
     },
     methods: {
-      cellSelectsb(sheet,ri,ci){
-        this.dialogFormVisisbjzm =true
-        this.sheet=sheet
-        this.ri=ri
-        this.ci=ci
+      cellSelectsb(sheet, ri, ci) {
+        this.dialogFormVisisbjzm = true
+        this.sheet = sheet
+        this.ri = ri
+        this.ci = ci
       },
       clicksb(row) {
-        this.sheet.cellText(this.ri,this.ci,row.sbmc).reRender()
+        this.sheet.cellText(this.ri, this.ci, row.sbmc).reRender()
         this.dialogFormVisisbjzm = false;
       },
       querySpreadSheetDataByWidgetFormItem() {
         return this.$refs.spreadsheet && this.$refs.spreadsheet.getSpreadSheetData()
       },
       loadSpreadSheetDataByWidgetFormItem(data) {
-         this.$refs.spreadsheet && this.$refs.spreadsheet.setSpreadSheetData(data)
+        this.$refs.spreadsheet && this.$refs.spreadsheet.setSpreadSheetData(data)
       },
       editableCellClassName({row, column, rowIndex, columnIndex}) {
-        row.rowIndex=rowIndex;
-        column.columnIndex=columnIndex;
+        row.rowIndex = rowIndex;
+        column.columnIndex = columnIndex;
         return 'editable-row_' + rowIndex + '-column_' + columnIndex + '-cell'
       },
       transferConfigcolToCol(formW) {
@@ -452,7 +459,6 @@
           this.data.list.splice(index, 1)
         })
       },
-
       handleEditTable(index, tableData) {
         // this.$message('表格编辑', index);
         this.currentIndex = index
@@ -477,7 +483,7 @@
             ...cloneData,
             options: {
               ...cloneData.options,
-              options: cloneData.options.options.map(item => ({ ...item }))
+              options: cloneData.options.options.map(item => ({...item}))
             }
           }
         }
@@ -493,7 +499,7 @@
         console.log('row1 : ', row);
         console.log('column1 : ', column);
       },
-      objectSpanMethod({ row, column, rowIndex, columnIndex }) {
+      objectSpanMethod({row, column, rowIndex, columnIndex}) {
         let mergeRule = this.element.mergeRule
         let result = false
         // console.log('row : ', row)
@@ -505,11 +511,16 @@
           const item = mergeRule[mergeRule_index]
           // console.log('item : ', item)
           if (typeof(item.mergeFunction) === 'function') {
-            result = result || item.mergeFunction({ row, column, rowIndex, columnIndex }, { startRow: item.startRow, endRow: item.endRow, startColumn: item.startColumn, endColumn: item.endColumn })
-            console.log('result : ', result)
+            result = result || item.mergeFunction({row, column, rowIndex, columnIndex}, {
+              startRow: item.startRow,
+              endRow: item.endRow,
+              startColumn: item.startColumn,
+              endColumn: item.endColumn
+            })
+            // console.log('result : ', result)
           }
           if (result) {
-            console.log('break : ', result)
+            // console.log('break : ', result)
             return result
           }
         }
@@ -523,7 +534,7 @@
             this.areaDom = null
           }
           this.areaDom = cellDom
-          this.$emit('update:areadom', { row: row, column: column })
+          this.$emit('update:areadom', {row: row, column: column})
           addClass(this.areaDom, 'editable-red-tag')
         } else {
           if (this.cellDom) {
@@ -531,7 +542,7 @@
             this.cellDom = null
           }
           this.cellDom = cellDom
-          this.$emit('update:celldom', { row: row, column: column })
+          this.$emit('update:celldom', {row: row, column: column})
           addClass(this.cellDom, 'editable-blue-tag')
         }
       },
@@ -550,6 +561,40 @@
         }
         return 'default'
       },
+      query_sb() {
+        const p = {
+          is_del: 0,
+          werks: (this.data.config ? this.data.config.werks : false) || (this.userinfo ? this.userinfo.werks : false) || 'W040',
+          bukrs: (this.data.config ? this.data.config.bukrs : false) || (this.userinfo ? this.userinfo.bukrs : false) || '4210'
+        };
+        getMethod((this.prefix + '/sjgl/process/sjgl_zsj_sbglcx?cx=getSbidSbmc'), p).then(res => {
+          if (res.success) {
+            this.$refs.spreadsheet.spreadsheet.options.sbData.splice(0,this.$refs.spreadsheet.spreadsheet.options.sbData.length)
+            // this.$refs.spreadsheet.spreadsheet.options.sbData.push(...res.dataset.datas);
+            if (res.dataset.datas.length > 10000) {
+              this.$refs.spreadsheet.spreadsheet.options.sbData.push(...(res.dataset.datas.slice(0, 10000)));
+              this.spreadsheetSetSbData(res.dataset.datas.slice(10000, res.dataset.datas.length))
+            } else {
+              this.$refs.spreadsheet.spreadsheet.options.sbData.push(...res.dataset.datas);
+            }
+          }
+        }).catch(err => {
+          this.$message({
+            type: "error",
+            message: "查询数据失败"
+          })
+        })
+      },
+      spreadsheetSetSbData(array) {
+        this.$nextTick(() => {
+          if (array.length > 10000) {
+            this.$refs.spreadsheet.spreadsheet.options.sbData.push(...(array.slice(0, 10000)));
+            this.spreadsheetSetSbData(array.slice(10000, array.length))
+          } else {
+            this.$refs.spreadsheet.spreadsheet.options.sbData.push(...array);
+          }
+        })
+      }
     },
     watch: {
       select(val) {

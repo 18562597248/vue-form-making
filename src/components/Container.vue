@@ -263,7 +263,7 @@
       },
       bukrs: {
         type: String,
-        default: "5120"
+        default: "4210"
       },
       werks: {
         type: String,
@@ -436,7 +436,7 @@
       selectTree(isCheck, obj) {
         if (isCheck) {
           this.selectTreeNode = obj
-          console.log(JSON.stringify(this.widgetForm))
+          // console.log(JSON.stringify(this.widgetForm))
           this.cellPro = {datasource: 'AQSC_SJGL', table: 'SJGL_JSJD_JBGL_REPORT_DATA', field: 'VALUE'}
           const {dbid, is_temp} = this.selectTreeNode
           is_temp === '1' && this.queryTemplateData(dbid)
@@ -784,6 +784,11 @@
                           rowsColumns["table"] = rightsmenus[m].table
                           rowsColumns["zbbm"] = rightsmenus[m].zbbm
                           rowsColumns["field"] = rightsmenus[m].field
+                          if (data[0].rightMenus[m].jzOrSb === 'sb') {
+                            rowsColumns["shebei"] = data[0].rightMenus[m].shebei
+                          } else if (data[0].rightMenus[m].jzOrSb === 'jz') {
+                            rowsColumns["jizu"] = data[0].rightMenus[m].jizu
+                          }
                         }
                         datas_.push(rowsColumns)
                       }

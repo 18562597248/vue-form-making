@@ -72,7 +72,8 @@ export default {
       svalue: '',
       spholder: '请选择',
       tooltipContentStr: "",
-      tooltipDisable: true
+      tooltipDisable: true,
+      userinfo: null
     }
   },
   watch: {
@@ -93,6 +94,7 @@ export default {
   mounted() {
     this.svalue = this.value; // 初始话下拉框的值
     this.spholder = this.pholder; // 初始话下拉框的值
+    this.userinfo = JSON.parse(sessionStorage.getItem("userinfo"))
   },
   methods: {
     selectChange() {

@@ -43,7 +43,7 @@
               <template v-slot:left>
                 <el-form ref="defaultQueryForm" :model="defaultQueryForm" label-width="75px" style="margin: 0;padding-left: 0">
                   <el-row>
-                    <el-col :span="6">
+                    <el-col :span="8">
                       <el-form-item label="设备编号" prop="sbbm">
                         <a slot="label" href="#" style="color: #606266" @click="plsjSbbm">设备编号</a>
                         <el-input v-model="defaultQueryForm.sbbm"
@@ -52,7 +52,7 @@
                                   size="small" />
                       </el-form-item>
                     </el-col>
-                    <el-col :span="6">
+                    <el-col :span="8">
                       <el-form-item label="设备名称" prop="sbmc">
                         <a slot="label" href="#" style="color: #606266" @click="plsjSbmc">设备名称</a>
                         <el-input v-model="defaultQueryForm.sbmc"
@@ -61,7 +61,7 @@
                                   size="small" />
                       </el-form-item>
                     </el-col>
-                    <el-col :span="6">
+                    <el-col :span="8">
                       <el-form-item label="KKS编码" prop="kksbm">
                         <a slot="label" href="#" style="color: #606266" @click="plsjSbbm">KKS编码</a>
                         <el-input v-model="defaultQueryForm.kksbm"
@@ -164,7 +164,7 @@
                           <databook v-model="normalQueryForm.jdzy"
                                     style="margin: 0"
                                     multiple
-                                    :groupcode="groupcodes" />
+                                    groupcode="AQSC_SJGL_JSJDZY" />
                         </el-form-item>
                       </el-col>
                       <!--<el-col :span="6">
@@ -221,6 +221,20 @@
                                     style="width: 100%"
                                     clearable
                                     size="small" />
+                        </el-form-item>
+                      </el-col>
+                    </el-row>
+                    <el-row>
+                      <el-col :span="6">
+                        <el-form-item label="台帐设备" prop="tzsb">
+                          <sfcom v-model="normalQueryForm.tzsb"
+                                 style="margin: 0" />
+                        </el-form-item>
+                      </el-col>
+                      <el-col :span="6">
+                        <el-form-item label="虚拟设备" prop="xnsb">
+                          <sfcom v-model="normalQueryForm.xnsb"
+                                 style="margin: 0" />
                         </el-form-item>
                       </el-col>
                     </el-row>
@@ -297,22 +311,22 @@
             </template>
           </aqsc-toolbar-query-panel>
           <!--  附件管理模态框   -->
-<!--          <aqsc-upload-table ref="uploadertable" v-loading="uploadLoading"-->
-<!--                             title="附件管理"-->
-<!--                             :show-import="popUpBox.showUpload"-->
-<!--                             :file-types="['*.*']"-->
-<!--                             werks="W219"-->
-<!--                             app-name="统一安全生产管理系统"-->
-<!--                             module-name="数据管理模块"-->
-<!--                             description="设备管理"-->
-<!--                             :recordid="recordid"-->
-<!--                             :moduletype="moduletype"-->
-<!--                             :moduleintype="moduleintype"-->
-<!--                             :limit="10"-->
-<!--                             :template="false"-->
-<!--                             @cancel="popUpBox.showUpload=false"-->
-<!--                             @success="successUpload"-->
-<!--                             @failure="failUpload" />-->
+          <aqsc-upload-table ref="uploadertable" v-loading="uploadLoading"
+                             title="附件管理"
+                             :show-import="popUpBox.showUpload"
+                             :file-types="['*.*']"
+                             werks="W219"
+                             app-name="统一安全生产管理系统"
+                             module-name="数据管理模块"
+                             description="设备管理"
+                             :recordid="recordid"
+                             :moduletype="moduletype"
+                             :moduleintype="moduleintype"
+                             :limit="10"
+                             :template="false"
+                             @cancel="popUpBox.showUpload=false"
+                             @success="successUpload"
+                             @failure="failUpload" />
           <!-- Table -->
           <aqsc-layout class="aqscNormalbackgroundColor" style="padding-left: 0; padding-right: 0">
             <!-- 基本信息表 -->
@@ -339,23 +353,23 @@
                   width="45px"
                 />
               </template>
-<!--              <el-table-column-->
-<!--                id="fj"-->
-<!--                prop="fj"-->
-<!--                label="附件"-->
-<!--                header-align="left"-->
-<!--                align="center"-->
-<!--                fixed-->
-<!--                :show-overflow-tooltip="false"-->
-<!--                :resizable="false"-->
-<!--                width="65px">-->
-<!--                <template slot-scope="scope">-->
-<!--                  <template v-if="scope.row.fj > 0">-->
-<!--                    <el-button icon="aqsc-accessory" class="aqsc-collapse-toolpannel-button-query" @click.stop="showFj(scope.row.dbid)" />-->
-<!--                  </template>-->
-<!--                  <span v-else>{{ }}</span>-->
-<!--                </template>-->
-<!--              </el-table-column>-->
+              <el-table-column
+                id="fj"
+                prop="fj"
+                label="附件"
+                header-align="left"
+                align="center"
+                fixed
+                :show-overflow-tooltip="false"
+                :resizable="false"
+                width="65px">
+                <template slot-scope="scope">
+                  <template v-if="scope.row.fj > 0">
+                    <el-button icon="aqsc-accessory" class="aqsc-collapse-toolpannel-button-query" @click.stop="showFj(scope.row.dbid)" />
+                  </template>
+                  <span v-else>{{ }}</span>
+                </template>
+              </el-table-column>
               <el-table-column
                 prop="sbbm"
                 label="设备编号"
@@ -375,7 +389,7 @@
                 fixed
                 :show-overflow-tooltip="true"
                 :resizable="true"
-                width="170px" />
+                width="280px" />
               <el-table-column
                 prop="jzms"
                 label="机组名称"
@@ -654,36 +668,35 @@
   </el-dialog>
 </template>
 <script>
-  import { AqscToolbarLayout, AqscToolbarQueryPanel } from "./aqsc/AqscToolbar";
-  import { dateFtt } from "@/util/index";
-  import { getUrl, isNull } from "@/api/sbgl";
-  import staff from './aqsc/StaffComponent';
-  import { AqscIconGroup } from './aqsc/AqscIcon'
-  import AqscLayout from "./aqsc/AqscLayout";
-  import BmbzTree from "./aqsc/BmBzTree";
-  import kksTree from "./aqsc/kksTree";
-  import SbflTree from "./aqsc/SbflTree";
-  import JsjdTree from "./aqsc/JsjdTree";
-  import { getMethod } from "@/util/method";
-  import databook from "./DataBook";
-  import bmpz from "./aqsc/BmpzComponent";
-  import cczy from "./aqsc/CcZyComponent"
-  import bzcomp from "./aqsc/BzComponent"
-  import sfcom from "./aqsc/SFComponent"
-  import jizu from "./aqsc/JizuComponent"
-  import bzsb from "./aqsc/BzsbComponent"
-  import kks from "./aqsc/KKSComponent"
-  import sbflcom from "./aqsc/SbflComponent"
-  import csks from "./aqsc/CsksComponent"
-  import plsj from "./aqsc/PlsjComponent";
-  // const userInfo = JSON.parse(sessionStorage.getItem("userinfo"));
-
+  import { AqscToolbarLayout, AqscToolbarQueryPanel } from "@components/AqscToolbar";
+  import { dateFtt } from "@/utils/index.js";
+  import AqscUploadTable from "@components/AqscUploadTable";
+  import { isNull } from "@sjglApi/zsjgl/sbgl/sbgl";
+  import staff from "@sjglComponents/zsjgl/StaffComponent"
+  import { AqscIconGroup } from '@components/AqscIcon'
+  import AqscLayout from "@components/AqscLayout";
+  import BmbzTree from "../../views/zsjgl/sbgl/sbgl/edit/BmBzTree";
+  import kksTree from "../../views/zsjgl/sbgl/sbgl/edit/kksTree";
+  import SbflTree from "../../views/zsjgl/sbgl/sbgl/edit/SbflTree";
+  import JsjdTree from "../../views/zsjgl/sbgl/sbgl/edit/JsjdTree";
+  import { getMethod } from "@/api/tpridmp/admin/method";
+  import databook from "@sjglComponents/zsjgl/DataBook";
+  import bmpz from "@sjglComponents/zsjgl/BmpzComponent";
+  import cczy from "@sjglComponents/zsjgl/CcZyComponent"
+  import bzcomp from "@sjglComponents/zsjgl/BzComponent"
+  import sfcom from "@sjglComponents/zsjgl/SFComponent"
+  import jizu from "@sjglComponents/zsjgl/JizuComponent"
+  import bzsb from "@sjglComponents/zsjgl/BzsbComponent"
+  import kks from "@sjglComponents/zsjgl/KKSComponent"
+  import sbflcom from "@sjglComponents/zsjgl/SbflComponent"
+  import csks from "@sjglComponents/zsjgl/CsksComponent"
+  import plsj from "@sjglComponents/zsjgl/PlsjComponent";
   export default {
     name: "SjglComponentNew",
     components: {
       // AqscIcon,
       cczy,
-      // AqscUploadTable,
+      AqscUploadTable,
       bzcomp,
       databook,
       bmpz,
@@ -712,11 +725,11 @@
       },
       bukrs: {
         type: String,
-        default: "5120"
+        default: JSON.parse(sessionStorage.getItem("userinfo")).bukrs
       },
       werks: {
         type: String,
-        default: "W040"
+        default: JSON.parse(sessionStorage.getItem("userinfo")).werks
       },
       fzbz: {
         type: String,
@@ -749,12 +762,15 @@
       xnsbFixed: {
         type: Boolean,
         default: false
+      },
+      prefix: {
+        type: String,
+        default: ""
       }
     },
     data() {
       return {
         // 批量查询
-        groupcodes: ['AQSC_SJGL_JSJDZY'],
         sbids: [],
         plsjTitle: '',
         tableName: '',
@@ -823,7 +839,7 @@
         showIndexQuery: false,
         // 默认查询
         defaultQueryForm: {
-          werks: this.werks,
+          werks: JSON.parse(sessionStorage.getItem("userinfo")).werks,
           kksbm: '',
           sbmc: '',
           sbbm: '',
@@ -904,7 +920,7 @@
         arrowAlwaysOn: false,
         // 树查询
         showTreeQuery: 'aqsc-left',
-        showTrees: true,
+        showTrees: false,
         treechecked: "1",
         treeoptions: [
           { name: "KKS树", value: "1" },
@@ -1032,6 +1048,7 @@
         console.log(this.popUpBox.showPlsj);
       },
       close() {
+        this.clearAll();
         this.$emit('close');
       },
       apply() {
@@ -1139,49 +1156,51 @@
         this.queryParams.kksbm = this.defaultQueryForm.kksbm;
         this.queryParams.werks = this.werks;
         this.queryParams.sbzt = this.defaultQueryForm.sbzt;
-        if (this.showIndexQuery) {
+        /* if (this.showIndexQuery) {
           this.indexLoading = true;
           this.queryParams.multidata = this.choosedFilter;
+        }*/
+        /* if (this.showNormalQuery) {
+          }*/
+        const sjsb = [];
+        const sccj = [];
+        const ggxh = [];
+        this.normalQueryForm.sjsb && sjsb.push(this.normalQueryForm.sjsb)
+        this.normalQueryForm.sccj && sccj.push(this.normalQueryForm.sccj);
+        this.normalQueryForm.ggxh && ggxh.push(this.normalQueryForm.ggxh);
+        this.queryParams.gsbm = this.normalQueryForm.gsbm;
+        this.queryParams.fzbz = this.normalQueryForm.fzbz;
+        this.queryParams.fzzy = this.normalQueryForm.fzzy;
+        this.queryParams.bzsbbm = this.normalQueryForm.bzsb;
+        this.queryParams.sbflbm = this.normalQueryForm.sbfl;
+        this.queryParams.xtdyid = this.normalQueryForm.xtdy;
+        this.queryParams.cbzxcode = this.normalQueryForm.cbzx;
+        this.queryParams.sjsb = sjsb;
+        this.queryParams.jdzyid = isNull(this.normalQueryForm.jdzy) ? undefined : this.normalQueryForm.jdzy;
+        this.queryParams.fzra = this.normalQueryForm.fzra;
+        this.queryParams.fzrb = this.normalQueryForm.fzrb;
+        // this.queryParams.tzsb = this.normalQueryForm.tzsb;
+        this.queryParams.xnsb = this.normalQueryForm.xnsb;
+        this.queryParams.sccj = sccj;
+        this.queryParams.ggxh = ggxh;
+        this.queryParams.sapkksbm = this.normalQueryForm.sapkksbm;
+        this.queryParams.dczbm = this.normalQueryForm.dczbm;
+        this.queryParams.zybs = this.normalQueryForm.zybs.toString();
+        this.queryParams.tzsb = this.normalQueryForm.tzsb;
+        this.queryParams.xnsb = this.normalQueryForm.xnsb;
+        this.queryParams.bzkksbm = this.normalQueryForm.bzkksbm;
+        this.queryParams.tzs = this.tzs;
+        if (!isNull(this.normalQueryForm.tyrq) && JSON.stringify(this.normalQueryForm.tyrq) !== '[]' && this.normalQueryForm.tyrq !== null) {
+          this.getTyrq();
+          this.queryParams.tyrq = this.tyrqOptions;
+        } else {
+          this.queryParams.tyrq = undefined;
         }
-        if (this.showNormalQuery) {
-          const sjsb = [];
-          const sccj = [];
-          const ggxh = [];
-          this.normalQueryForm.sjsb && sjsb.push(this.normalQueryForm.sjsb)
-          this.normalQueryForm.sccj && sccj.push(this.normalQueryForm.sccj);
-          this.normalQueryForm.ggxh && ggxh.push(this.normalQueryForm.ggxh);
-          this.queryParams.gsbm = this.normalQueryForm.gsbm;
-          this.queryParams.fzbz = this.normalQueryForm.fzbz;
-          this.queryParams.fzzy = this.normalQueryForm.fzzy;
-          this.queryParams.bzsbbm = this.normalQueryForm.bzsb;
-          this.queryParams.sbflbm = this.normalQueryForm.sbfl;
-          this.queryParams.xtdyid = this.normalQueryForm.xtdy;
-          this.queryParams.cbzxcode = this.normalQueryForm.cbzx;
-          this.queryParams.sjsb = sjsb;
-          this.queryParams.jdzyid = isNull(this.normalQueryForm.jdzy) ? undefined : this.normalQueryForm.jdzy;
-          this.queryParams.fzra = this.normalQueryForm.fzra;
-          this.queryParams.fzrb = this.normalQueryForm.fzrb;
-          // this.queryParams.tzsb = this.normalQueryForm.tzsb;
-          this.queryParams.xnsb = this.normalQueryForm.xnsb;
-          this.queryParams.sccj = sccj;
-          this.queryParams.ggxh = ggxh;
-          this.queryParams.sapkksbm = this.normalQueryForm.sapkksbm;
-          this.queryParams.dczbm = this.normalQueryForm.dczbm;
-          this.queryParams.zybs = this.normalQueryForm.zybs.toString();
-          this.queryParams.bzkksbm = this.normalQueryForm.bzkksbm;
-          this.queryParams.tzs = this.tzs;
-          if (!isNull(this.normalQueryForm.tyrq) && JSON.stringify(this.normalQueryForm.tyrq) !== '[]' && this.normalQueryForm.tyrq !== null) {
-            this.getTyrq();
-            this.queryParams.tyrq = this.tyrqOptions;
-          } else {
-            this.queryParams.tyrq = undefined;
-          }
-          if (!isNull(this.normalQueryForm.cjsj) && JSON.stringify(this.normalQueryForm.cjsj) !== '[]' && this.normalQueryForm.cjsj !== null) {
-            this.getCjsj();
-            this.queryParams.cjsj = this.cjsjOptions;
-          } else {
-            this.queryParams.cjsj = undefined;
-          }
+        if (!isNull(this.normalQueryForm.cjsj) && JSON.stringify(this.normalQueryForm.cjsj) !== '[]' && this.normalQueryForm.cjsj !== null) {
+          this.getCjsj();
+          this.queryParams.cjsj = this.cjsjOptions;
+        } else {
+          this.queryParams.cjsj = undefined;
         }
         this.queryParams.start = this.dataStart;
         this.queryParams.limit = this.pageSizeNow;
@@ -1204,28 +1223,21 @@
         if (this.showIndexQuery) {
           this.getXtdy(data);
         }
-        getMethod(getUrl('sbgl?sbgl=query2'), { data: JSON.stringify(data) }).then(res => {
-          if (res.success) {
-            this.ywxxTable = res.dataset.datas;
-            this.totalData = parseInt(res.dataset.totalCount);
-            this.listLoading = false;
-            if (this.totalData <= (this.currentPage - 1) * this.pageSizeNow) {
-              if (this.currentPage < 2) {
-                this.dataStart = 0
-              } else {
-                this.dataStart = (this.currentPage - 2) * this.pageSizeNow;
-              }
-              this.currentPage -= 1;
-              this.doQuery();
+        getMethod((this.prefix + '/sjgl/process/sjgl_zsj_sbgl?sbgl=query2'), { data: JSON.stringify(data) }).then(res => {
+          this.ywxxTable = res.dataset.datas;
+          this.totalData = parseInt(res.dataset.totalCount);
+          this.listLoading = false;
+          if (this.totalData <= (this.currentPage - 1) * this.pageSizeNow) {
+            if (this.currentPage < 2) {
+              this.dataStart = 0
+            } else {
+              this.dataStart = (this.currentPage - 2) * this.pageSizeNow;
             }
-            this.$nextTick(() => {
-              this.jbxxTable = res.dataset.datas;
-            });
+            this.currentPage -= 1;
+            this.doQuery();
           }
-        }).catch(() => {
-          this.$message({
-            type: "error",
-            message: "查询数据失败"
+          this.$nextTick(() => {
+            this.jbxxTable = res.dataset.datas;
           });
         });
       },
@@ -1253,7 +1265,7 @@
         // 取消全部选择的条件
         this.listLoading = true;
         this.queryParams = {};
-        if (this.showIndexQuery) {
+        /* if (this.showIndexQuery) {
           this.choosedFilter = [];
           this.queryParams.multidata = this.choosedFilter;
           this.filterData.forEach((v) => {
@@ -1264,14 +1276,12 @@
             this.filterChoosed[item] = false;
           }
           this.clearQuery('defaultQueryForm');
-        }
-        if (this.showNormalQuery) {
-          this.clearQuery('normalQueryForm');
-          this.normalQueryForm.fzraid = '';
-          this.normalQueryForm.fzrbid = '';
-          this.normalQueryForm.bzsbid = '';
-          this.normalQueryForm.sbflid = '';
-        }
+        }*/
+        this.clearQuery('normalQueryForm');
+        this.normalQueryForm.fzraid = '';
+        this.normalQueryForm.fzrbid = '';
+        this.normalQueryForm.bzsbid = '';
+        this.normalQueryForm.sbflid = '';
         // console.log(this.normalQueryForm);
         // 默认查询条件重置
         this.defaultQueryForm.sbbm = '';
@@ -1285,7 +1295,9 @@
         this.queryParams.werks = this.werks;
         this.queryParams.start = this.dataStart;
         this.queryParams.limit = this.pageSizeNow;
-        this.querySb(this.queryParams);
+        if (this.dialogFormVisible) {
+          this.querySb(this.queryParams);
+        }
       },
       // --------------------------树查询----------------------------
       //  KKS树联动查询
@@ -1636,439 +1648,6 @@
           // console.log("this.$refs[formName] :is null");
         }
       }
-      /* // ---------------------------索引查询-------------------------
-   // 加载筛选条件
-   getXtdy(data) {
-     // console.log(JSON.stringify(data))
-     const arr = [];
-     for (const key in this.filterChoosed) {
-       this.filterChoosed[key] && arr.push(key)
-     }
-     Object.assign(data, { choosed: arr })
-     /!* {
-         params: JSON.stringify(data),
-           xtdy: this.filterChoosed.xtdy,
-         zjfj: this.filterChoosed.zjfj,
-         bzsb: this.filterChoosed.bzsb,
-         sccj: this.filterChoosed.sccj,
-         ggxh: this.filterChoosed.ggxh,
-         sbfl: this.filterChoosed.sbfl,
-         sjsb: this.filterChoosed.sjsb,
-         jdzy: this.filterChoosed.jdzy,
-         gsbm: this.filterChoosed.gsbm,
-         fzbz: this.filterChoosed.fzbz,
-         fzzy: this.filterChoosed.fzzy,
-         fzra: this.filterChoosed.fzra,
-         tz: this.filterChoosed.tz
-       }*!/
-     getMethod(getUrl('sbgl?sbgl=getIndexQuery'), { data: JSON.stringify(data) }).then(res => {
-       const filterData = [];
-       for (let m = 0; m < res.dataset.length; m++) {
-         // 对返回的数据进行格式化
-         if (res.dataset[m].datas.length !== 0) {
-           if (res.dataset[m].name === 'xtdy') {
-             const xtdyObj = {};
-             const datass = res.dataset[m];
-             xtdyObj.filters = this.dealFilterData(datass, '单元(机组)');
-             xtdyObj.name = '单元(机组)';
-             if (this.filterChoosed.xtdy) {
-               xtdyObj.hasChoosed = true;
-             } else {
-               xtdyObj.hasChoosed = false;
-               this.filterChoosed.xtdy = false;
-             }
-             xtdyObj.multichoose = false;
-             filterData.push(xtdyObj);
-           }
-           if (res.dataset[m].name === 'sjsb') {
-             const sjsbObj = {};
-             const datass = res.dataset[m];
-             sjsbObj.filters = this.dealFilterData(datass, '受监设备');
-             sjsbObj.name = '受监设备';
-             if (this.filterChoosed.sjsb) {
-               sjsbObj.hasChoosed = true;
-             } else {
-               sjsbObj.hasChoosed = false;
-               this.filterChoosed.sjsb = false;
-             }
-             sjsbObj.multichoose = false;
-             filterData.push(sjsbObj);
-           }
-           if (res.dataset[m].name === 'bzsb') {
-             const bzsbObj = {};
-             const datass = res.dataset[m];
-             bzsbObj.filters = this.dealFilterData(datass, '标准设备');
-             bzsbObj.name = '标准设备';
-             if (this.filterChoosed.bzsb) {
-               bzsbObj.hasChoosed = true;
-             } else {
-               bzsbObj.hasChoosed = false;
-               this.filterChoosed.bzsb = false;
-             }
-             bzsbObj.multichoose = false;
-             filterData.push(bzsbObj);
-           }
-           if (res.dataset[m].name === 'sbfl') {
-             const sbflObj = {};
-             const datass = res.dataset[m];
-             sbflObj.filters = this.dealFilterData(datass, '设备分类');
-             sbflObj.name = '设备分类';
-             if (this.filterChoosed.sbfl) {
-               sbflObj.hasChoosed = true;
-             } else {
-               sbflObj.hasChoosed = false;
-               this.filterChoosed.sbfl = false;
-             }
-             sbflObj.multichoose = false;
-             filterData.push(sbflObj);
-           }
-           if (res.dataset[m].name === 'sccj') {
-             const sccjObj = {};
-             const datass = res.dataset[m];
-             sccjObj.filters = this.dealFilterData(datass, '生产厂家');
-             sccjObj.name = '生产厂家';
-             if (this.filterChoosed.sccj) {
-               sccjObj.hasChoosed = true;
-             } else {
-               sccjObj.hasChoosed = false;
-               this.filterChoosed.sccj = false;
-             }
-             sccjObj.multichoose = false;
-             filterData.push(sccjObj);
-             // filterData[2] = (sccjObj);
-           }
-           if (res.dataset[m].name === 'ggxh') {
-             const ggxhObj = {};
-             const datass = res.dataset[m];
-             ggxhObj.filters = this.dealFilterData(datass, '规格型号');
-             ggxhObj.name = '规格型号';
-             if (this.filterChoosed.ggxh) {
-               ggxhObj.hasChoosed = true;
-             } else {
-               ggxhObj.hasChoosed = false;
-               this.filterChoosed.ggxh = false;
-             }
-             ggxhObj.multichoose = false;
-             filterData.push(ggxhObj);
-             // filterData[2] = (sccjObj);
-           }
-           if (res.dataset[m].name === 'jdzy') {
-             const datass = res.dataset[m];
-             const jdzyObj = {};
-             jdzyObj.filters = this.dealFilterData(datass, '监督专业');
-             jdzyObj.name = '监督专业';
-             if (this.filterChoosed.jdzy) {
-               jdzyObj.hasChoosed = true;
-             } else {
-               jdzyObj.hasChoosed = false;
-               this.filterChoosed.jdzy = false;
-             }
-             jdzyObj.multichoose = false;
-             filterData.push(jdzyObj);
-           }
-           if (res.dataset[m].name === 'gsbm') {
-             const datass = res.dataset[m];
-             const gsbmObj = {};
-             gsbmObj.filters = this.dealFilterData(datass, '部门');
-             gsbmObj.name = '部门';
-             if (this.filterChoosed.gsbm) {
-               gsbmObj.hasChoosed = true;
-             } else {
-               gsbmObj.hasChoosed = false;
-               this.filterChoosed.gsbm = false;
-             }
-             gsbmObj.multichoose = false;
-             filterData.push(gsbmObj);
-           }
-           if (res.dataset[m].name === 'fzzy') {
-             const datass = res.dataset[m];
-             const fzzyObj = {};
-             fzzyObj.filters = this.dealFilterData(datass, '专业');
-             fzzyObj.name = '专业';
-             if (this.filterChoosed.fzzy) {
-               fzzyObj.hasChoosed = true;
-             } else {
-               fzzyObj.hasChoosed = false;
-               this.filterChoosed.fzzy = false;
-             }
-             fzzyObj.multichoose = false;
-             filterData.push(fzzyObj);
-           }
-           if (res.dataset[m].name === 'fzbz') {
-             const datass = res.dataset[m];
-             const fzbzObj = {};
-             fzbzObj.filters = this.dealFilterData(datass, '班组');
-             fzbzObj.name = '班组';
-             if (this.filterChoosed.fzbz) {
-               fzbzObj.hasChoosed = true;
-             } else {
-               fzbzObj.hasChoosed = false;
-               this.filterChoosed.fzbz = false;
-             }
-             fzbzObj.multichoose = false;
-             filterData.push(fzbzObj);
-           }
-           if (res.dataset[m].name === 'fzra') {
-             const datass = res.dataset[m];
-             const fzraObj = {};
-             fzraObj.filters = this.dealFilterData(datass, '责任人A');
-             fzraObj.name = '责任人A';
-             if (this.filterChoosed.fzra) {
-               fzraObj.hasChoosed = true;
-             } else {
-               fzraObj.hasChoosed = false;
-               this.filterChoosed.fzra = false;
-             }
-             fzraObj.multichoose = false;
-             filterData.push(fzraObj);
-           }
-           if (res.dataset[m].name === 'tz') {
-             const datass = res.dataset[m];
-             const tzObj = {};
-             tzObj.filters = this.dealFilterData(datass, '台帐');
-             tzObj.name = '台帐';
-             if (this.filterChoosed.tz) {
-               tzObj.hasChoosed = true;
-             } else {
-               tzObj.hasChoosed = false;
-               this.filterChoosed.tz = false;
-             }
-             tzObj.multichoose = false;
-             if (Number(datass.datas[0].count) !== 0 || Number(datass.datas[1].count) !== 0 || Number(datass.datas[2].count) !== 0) {
-               filterData.push(tzObj);
-             }
-           }
-         }
-       }
-       filterData.sort((a, b) => {
-         const order = ['单元(机组)', '部门', '专业', '班组', '责任人A', '台帐', '设备分类', '标准设备', '生产厂家', '规格型号', '受监设备', '监督专业'];
-         return order.indexOf(a.name) - order.indexOf(b.name);
-       });
-       // console.log(this.filterData);
-       this.filterData = filterData;
-       this.indexLoading = false;
-       this.changeTableHeight();
-     });
-   },
-   // 筛选条件赋值处理
-   dealFilterData(datass, type) {
-     const arr = [];
-     const numArr = [];
-     for (let i = 0; i < datass.datas.length; i++) {
-       const item = datass.datas[i];
-       const obj = {};
-       if (item.dataname !== '空' || item.dataid && item.dataid !== '空') {
-         obj.id = item.dataid;
-         obj.value = item.dataname ? item.dataname : "";
-         obj.type = type;
-         obj.count = Number(item.count);
-         arr.push(obj);
-       } else {
-         numArr.push(Number(item.count))
-       }
-     }
-     const num = numArr.reduce((prev, now) => {
-       return prev + now;
-     }, 0);
-     const nObj = {
-       id: '_empty',
-       value: '空',
-       type: type,
-       count: num
-     };
-     if (nObj.count !== 0) {
-       arr.push(nObj);
-     }
-     arr.sort((a, b) => {
-       const sort = [b.name, '空'];
-       return sort.indexOf(b.name) - sort.indexOf('空');
-     });
-     return arr;
-   },
-   // 单选
-   async handleFilter(condition, item) {
-     /!* console.log(condition);// 一条数据
-       console.log(item);// 同类数据数组,其中包含多条数据*!/
-     if (condition.id === '') {
-       return;
-     }
-     this.choosedFilter.push(condition);
-     for (let i = 0; i < this.filterData.length; i++) {
-       if (this.filterData[i].name === item.name) {
-         this.$set(this.filterData[i], 'hasChoosed', true);
-         break;
-       }
-     }
-     await this.setFilterParam(condition.id.split(','), item);
-     this.changeTableHeight();
-   },
-   // 已选项删除
-   async cancelChoose(item) {
-     // console.log(item);
-     // 取消已选
-     const type = this.getType(item);
-     // console.log(type);
-     // console.log(this.filterData);
-     // console.log(this.choosedFilter);
-     for (let i = 0; i < this.filterData.length; i++) {
-       if (this.filterData[i].name === type) {
-         await this.$set(this.filterData[i], 'hasChoosed', false);
-       }
-     }
-     for (let j = 0; j < this.choosedFilter.length; j++) {
-       if (Array.isArray(this.choosedFilter[j])) {
-         for (let k = 0; k < this.choosedFilter[j].length; k++) {
-           if (this.choosedFilter[j][k].type === type) {
-             this.choosedFilter.splice(j, 1);
-             j -= 1;
-             break;
-           }
-         }
-       } else {
-         if (this.choosedFilter[j].type === type) {
-           this.choosedFilter.splice(j, 1);
-           j -= 1;
-         }
-       }
-     }
-   },
-   // 取消选择之后
-   afterCancelChoose(item) {
-     // debugger
-     // console.log(item);
-     this.cancelChoose(item);
-     const type = this.getType(item);
-     this.setFilterParam([], { name: type });
-     // console.log(this.filterData);
-     // console.log(this.filterChoosed);
-     this.changeTableHeight();
-   },
-   // 多选
-   doMultiChoose(item) {
-     // console.log(item); item为该行所有的数据
-     this.filterData.forEach(v => {
-       // console.log(v); 确保只有一行处于多选状态
-       v.multichoose = false;
-     });
-     item.multichoose = true;
-     this.moreItem = item.name;
-     this.changeTableHeight();
-   },
-   // 提交多选
-   handleMultiChoose(item) {
-     this.choosedFilter.push(this.multiChoosedFilter);
-     const ids = [];
-     for (let i = 0; i < this.multiChoosedFilter.length; i++) {
-       ids.push(this.multiChoosedFilter[i].id);
-     }
-     this.multiChoosedFilter = [];
-     this.moreItem = '';
-     this.filterData.forEach(v => {
-       v.multichoose = false;
-     });
-     item.hasChoosed = true;
-     this.setFilterParam(ids, item);
-     this.changeTableHeight();
-   },
-   // 取消多选操作
-   cancelMultiChoose() {
-     // console.log(this.multiChoosedFilter);
-     this.multiChoosedFilter = [];
-     this.filterData.forEach(v => {
-       v.multichoose = false;
-     });
-     this.changeTableHeight();
-   },
-   // 获取Type
-   getType(item) {
-     let type;
-     if (item.length === undefined) {
-       type = item.type;
-     } else {
-       item.forEach((v) => {
-         type = v.type;
-       })
-     }
-     return type;
-   },
-   // 更多按钮
-   filterMore(item) {
-     // 更多按钮点击
-     this.moreItem = item.name;
-     this.$nextTick(() => {
-       const height = this.$refs.searchPanel.$el.clientHeight;
-       this.changeHeight(height);
-     })
-   },
-   filterClose() {
-     this.changeTableHeight();
-
-     // 点击收起
-     this.moreItem = "";
-   },
-   // 重置筛选状态
-   resetFilterChoosed(item) {
-     // console.log(item);
-     this.filterList.forEach((obj) => {
-       // console.log(obj);{ name: '...', type: '...'}
-       if (item.name === obj.name && this.filterChoosed[obj.type]) {
-         this.filterChoosed[obj.type] = false;
-       }
-     });
-   },
-   // 筛选条件查询
-   setFilterParam(condition, item) {
-     // console.log(item);
-     if (item.name === '单元(机组)') {
-       this.queryParams.xtdyid = condition;
-       this.filterChoosed.xtdy = !this.filterChoosed.xtdy;
-     } else if (item.name === '主/辅机') {
-       this.filterChoosed.zjfj = !this.filterChoosed.zjfj;
-       // console.log(this.filterChoosed.zjfj);
-       this.queryParams.zjfjid = condition;
-     } else if (item.name === '设备分类') {
-       this.filterChoosed.sbfl = !this.filterChoosed.sbfl;
-       this.queryParams.sbflid = condition;
-     } else if (item.name === '标准设备') {
-       this.filterChoosed.bzsb = !this.filterChoosed.bzsb;
-       this.queryParams.bzsbid = condition;
-     } else if (item.name === '受监设备') {
-       this.filterChoosed.sjsb = !this.filterChoosed.sjsb;
-       this.queryParams.sjsb = condition;
-     } else if (item.name === '监督专业') {
-       this.filterChoosed.jdzy = !this.filterChoosed.jdzy;
-       this.queryParams.jdzyid = condition;
-     } else if (item.name === '生产厂家') {
-       this.filterChoosed.sccj = !this.filterChoosed.sccj;
-       this.queryParams.sccj = condition;
-     } else if (item.name === '规格型号') {
-       this.filterChoosed.ggxh = !this.filterChoosed.ggxh;
-       this.queryParams.ggxh = condition;
-     } else if (item.name === '部门') {
-       this.filterChoosed.gsbm = !this.filterChoosed.gsbm;
-       if (condition[0] === undefined) {
-         this.queryParams.fzbz = '';
-       }
-       this.queryParams.gsbm = condition;
-     } else if (item.name === '专业') {
-       this.filterChoosed.fzzy = !this.filterChoosed.fzzy;
-       this.queryParams.fzzy = condition;
-     } else if (item.name === '班组') {
-       this.filterChoosed.fzbz = !this.filterChoosed.fzbz;
-       this.queryParams.fzbz = condition;
-     } else if (item.name === '责任人A') {
-       this.filterChoosed.fzra = !this.filterChoosed.fzra;
-       this.queryParams.fzraid = condition;
-     } else if (item.name === '台帐') {
-       this.filterChoosed.tz = !this.filterChoosed.tz;
-       const tzs = [];
-       condition.forEach(item => {
-         tzs.push(item);
-       })
-       this.queryParams.tzs = tzs;
-     }
-     this.doQuery();
-   },*/
     }
   };
 </script>
@@ -2080,7 +1659,6 @@
     overflow: auto;
     white-space: nowrap;
     text-overflow: ellipsis;
-    /*overflow-x: scroll;*/
   }
 </style>
 

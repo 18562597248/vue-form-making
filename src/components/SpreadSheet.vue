@@ -70,7 +70,7 @@ export default {
       zbbmData: this.zbbmDatas,
       cellPro: this.cellPro,
       jizuData: this.jizuData,
-      sbData: this.sbData,
+      sbData: [],
       showContextmenu: this.readonly,
       showToolbar: this.readonly
     })

@@ -153,21 +153,15 @@
     </template>
 
     <template v-if="widget.type=='month'">
-      <el-date-picker
+      <data-book-select
         v-model="dataModel"
-        :type="widget.options.type"
-        :placeholder="widget.options.placeholder"
-        :start-placeholder="widget.options.startPlaceholder"
-        :end-placeholder="widget.options.endPlaceholder"
         :disabled="disabled || widget.options.disabled"
         :readonly="readonly || widget.options.readonly"
-        :editable="widget.options.editable"
+        :placeholder="widget.options.placeholder"
+        :groupcode="['AQSC_JSJD_SUB_MONTHLY']"
         :clearable="widget.options.clearable"
-        :value-format="widget.options.format"
-        :format="widget.options.format"
-        :style="{width: widget.options.width}"
-      >
-      </el-date-picker>
+        value-field="datacode"
+        :style="{width: widget.options.width}" />
     </template>
 
     <template v-if="widget.type=='quarter'">
