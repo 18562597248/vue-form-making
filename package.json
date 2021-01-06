@@ -1,7 +1,7 @@
 {
   "name": "@aqsc/form-making",
   "description": "A designer and generator of form base on Vue.js, make form development simple and efficient.",
-  "version": "0.0.60",
+  "version": "0.0.64",
   "author": {
     "name": "wangying",
     "email": "upcwangying@126.com",
@@ -36,7 +36,7 @@
     "build-bundle:dev": "vue-cli-service build --mode development --target lib --name FormMaking ./src/index.js"
   },
   "dependencies": {
-    "@aqsc/x-data-spreadsheet": "^0.0.15",
+    "@aqsc/x-data-spreadsheet": "0.0.24",
     "axios": "^0.18.0",
     "clipboard": "^2.0.1",
     "element-ui": "^2.13.0",
