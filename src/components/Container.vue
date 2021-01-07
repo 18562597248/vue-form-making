@@ -784,10 +784,12 @@
                           rowsColumns["table"] = rightsmenus[m].table
                           rowsColumns["zbbm"] = rightsmenus[m].zbbm
                           rowsColumns["field"] = rightsmenus[m].field
-                          if (data[0].rightMenus[m].jzOrSb === 'sb') {
-                            rowsColumns["shebei"] = data[0].rightMenus[m].shebei
-                          } else if (data[0].rightMenus[m].jzOrSb === 'jz') {
-                            rowsColumns["jizu"] = data[0].rightMenus[m].jizu
+                          if (data[0].rightMenus[m] && data[0].rightMenus[m].jzOrSb) {
+                            if (data[0].rightMenus[m].jzOrSb === 'sb') {
+                              rowsColumns["shebei"] = data[0].rightMenus[m].shebei
+                            } else if (data[0].rightMenus[m].jzOrSb === 'jz') {
+                              rowsColumns["jizu"] = data[0].rightMenus[m].jizu
+                            }
                           }
                         }
                         datas_.push(rowsColumns)
