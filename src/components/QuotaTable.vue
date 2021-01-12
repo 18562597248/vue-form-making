@@ -176,7 +176,7 @@ export default {
       currentColumn: null,
       oldColumn: null,
       addZhibiaoShowDialog: false,
-      zbAttribute: [],
+      zbAttribute: {},
       listLoading: this.loading,
     }
   },
@@ -202,19 +202,10 @@ export default {
       this.addZhibiaoShowDialog = true
     },
     submitZhibiao() {
-      // const zbAttribute_ = res.dataset.datas[0]
-      // zbAttribute_.zbdw = zbAttribute_.zbuint // 规划字段名 指标单位
-      // zbAttribute_.zbsjlx = zbAttribute_.datatype // 规划字段名 指标类型
-      // zbAttribute_.zbsjy = zbAttribute_.attribute1 // 规划字段名 指标数据源
-      // zbAttribute_.zbshux = zbAttribute_.attribute2 // 规划字段名 指标属性
-      // zbAttribute_.zbbzz = zbAttribute_.bzvalue // 规划字段名 指标标准值
-      // zbAttribute_.zbqwz = zbAttribute_.qwvalue // 规划字段名 指标期望值
-      // zbAttribute_.zbshangx = zbAttribute_.uplimit // 规划字段名 指标上限
-      // zbAttribute_.zbxx = zbAttribute_.lowlimit // 规划字段名 指标下限
-      // zbAttribute_.zbgx = val.jsgs
-      this.zbflZbData.unshift(this.zbAttribute)
-      this.$emit('update-zbflzbdata', this.zbflZbData)
+      let zbAttribute_ = JSON.parse(JSON.stringify(this.zbAttribute))
+      this.$emit('update-zbflzbdata', zbAttribute_)
       this.addZhibiaoShowDialog = false
+      this.zbAttribute = {}
     },
     deleteZhibiao() {
       console.log('currentColumn : ', this.currentColumn)

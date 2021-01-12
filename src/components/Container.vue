@@ -366,6 +366,9 @@
       },
       setSybbTreeDataForZB(val) {
         this['zbflSelectDataFor' + this.syorjbParam] = val
+        let  zbflSelectData_ = [val, ...this.zbflSelectData]
+        this.zbflSelectData = zbflSelectData_
+        this.zbDatas.push({key: val.zbbm, title: val.zbmc})
       },
       query_bbfl() {  // 报表查询 方法
         if (this['bbflTreeDataFor' + this.syorjbParam].length < 1) {
