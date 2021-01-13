@@ -114,6 +114,14 @@ export default {
       }]
     }
   },
+  watch: {
+    data: {
+      handler(val) {
+        this.$emit("update:data", val);
+      },
+      deep: true
+    }
+  }
 }
 </script>
 

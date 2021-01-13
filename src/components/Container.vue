@@ -113,7 +113,7 @@
                                @merge-cell="mergeCell" @update-row-check="updateRowCheck" @show-jz="widgetConShowJz"
                                @cell-auto-computed="cellAutoComputed"
                                @clean-cell-dom="cleanCellDom"></widget-config>
-                <form-config v-show="configTab ==='form'" :data="widgetForm.config"></form-config>
+                <form-config v-show="configTab ==='form'" :data.sync="widgetForm.config"></form-config>
               </el-main>
             </el-container>
 
@@ -386,8 +386,7 @@
         }
       },
       queryjz(param) {
-        console.log(this.widgetForm.werks)
-        const p = { is_del: 0, werks: this.widgetForm.werks === "undefined"?"_null":this.widgetForm.werks, bukrs: this.widgetForm.bukrs === "undefined"?"_null":this.widgetForm.bukrs };
+        const p = { is_del: 0, werks: (this.widgetForm.config && this.widgetForm.config.werks) || this.werks, bukrs: (this.widgetForm.config && this.widgetForm.config.bukrs) || this.bukrs };
         Object.assign(p, param);
         getMethod('/jtgs/sjgl/process/aqsc_zsj_jizupz?m=query', p).then(response => {
          let options = response.dataset.datas;
@@ -445,9 +444,6 @@
           is_temp === '1' && this.queryTemplateData(dbid)
           is_temp === '0' && this.handleClear()
           is_temp === '0' && this.query_zb(dbid)
-          this.$nextTick(() => {
-            this.queryjz();
-          })
         } else {
           this.selectTreeNode = null
           this.handleClear()
@@ -776,11 +772,7 @@
                       if (Number(x) === Number(rightsmenus[m].ri) && Number(k) === Number(rightsmenus[m].ci)) {
                         rowsColumns["rowIndex"] = Number(x)
                         rowsColumns["columnIndex"] = Number(k)
-                        if (cells[Number(k)].type === "list"||cells[Number(k)].type === "jizu") {
-                          rowsColumns["text"] = cells[Number(k)].value
-                        } else {
-                          rowsColumns["text"] = cells[Number(k)].text
-                        }
+                        rowsColumns["text"] = cells[Number(k)].text
                         rowsColumns["headers"] = rightsmenus[m].headers
                         if (rightsmenus[m].headers === "false") {
                           rowsColumns["datasource"] = rightsmenus[m].datasource
@@ -855,7 +847,7 @@
                 }
               }
             }
-
+            this.queryjz()
           })
         })
       },
