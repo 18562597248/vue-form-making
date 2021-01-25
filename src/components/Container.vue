@@ -842,7 +842,7 @@
             for (let item of JSON.parse(json).list) {
               if (item.type === "sheet") {
                 if (item.options.length > 0) {
-                  const optionsJson = item.options[0]
+                  const optionsJson = item.options
                   this.loadSpreadSheetData(optionsJson)
                 }
               }

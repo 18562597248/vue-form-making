@@ -285,7 +285,7 @@
     </template>
 
     <template v-if="element.type === 'sheet'">
-      <spread-sheet ref="spreadsheet" :zbbmDatas="zbbmDatas" :cellPro="cellPro" :jizuData="jizuData" @updateInfo="cellSelectsb"  />
+      <spread-sheet ref="spreadsheet" :zbbmDatas="zbbmDatas" :cellPro="cellPro" :jizuData="jizuData" @updateInfo="cellSelectsb" />
       <sb-componet :dialog-form-visible="dialogFormVisisbjzm"  @close="dialogFormVisisbjzm=false"
                    @row-dblclick="clicksb" :bukrs="bukrs" :werks="werks" ></sb-componet>
     </template>
