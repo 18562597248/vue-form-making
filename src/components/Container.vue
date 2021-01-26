@@ -759,10 +759,10 @@
             } else if (item.type === 'sheet') {
               const data = this.$refs.widgetForm && this.$refs.widgetForm.querySpreadSheetDataByWidgetForm()
               const ss = _clonedeep(item.options)
-              let sheetData = Object.create(null)
-              if (ss.length > 0) {
-                const rowsarrys = ss[0].rows
-                const rightsmenus = ss[0].rightMenus
+              for (const index in ss) {
+                let sheetData = Object.create(null)
+                const rowsarrys = ss[index].rows
+                const rightsmenus = ss[index].rightMenus
                 const datas_ = []
                 for (const x in rowsarrys) {
                   const cells = rowsarrys[x].cells
@@ -779,11 +779,11 @@
                           rowsColumns["table"] = rightsmenus[m].table
                           rowsColumns["zbbm"] = rightsmenus[m].zbbm
                           rowsColumns["field"] = rightsmenus[m].field
-                          if (data[0].rightMenus[m] && data[0].rightMenus[m].jzOrSb) {
-                            if (data[0].rightMenus[m].jzOrSb === 'sb') {
-                              rowsColumns["shebei"] = data[0].rightMenus[m].shebei
-                            } else if (data[0].rightMenus[m].jzOrSb === 'jz') {
-                              rowsColumns["jizu"] = data[0].rightMenus[m].jizu
+                          if (data[index].rightMenus[m] && data[index].rightMenus[m].jzOrSb) {
+                            if (data[index].rightMenus[m].jzOrSb === 'sb') {
+                              rowsColumns["shebei"] = data[index].rightMenus[m].shebei
+                            } else if (data[index].rightMenus[m].jzOrSb === 'jz') {
+                              rowsColumns["jizu"] = data[index].rightMenus[m].jizu
                             }
                           }
                         }
@@ -795,16 +795,13 @@
                 sheetData['type'] = item.type
                 sheetData['key'] = item.model
                 sheetData['model'] = "model2"
-                sheetData['cols'] = ss[0].cols.len
-                sheetData['rows'] = ss[0].rows.len
+                sheetData['cols'] = ss[index].cols.len
+                sheetData['rows'] = ss[index].rows.len
+                sheetData['sheetName'] = ss[index].name
                 sheetData['datas'] = datas_
-                // data['dataTransformRules'] = item.options.dataTransformRules
                 sheetData['defaultFields'] = 'werks,bukrs,create_by,create_time,update_by,update_time,is_del'
                 tables.push(sheetData)
               }
-              // sheetData['datasource'] = ss.datasource
-              // sheetData['table'] = ss.table
-              // sheetData['field'] = ss.field
               item.options = data
               if (item.options.length > 0) {
                 item.options[0]['type'] = ss.type
